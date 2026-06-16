@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NTL Culture Day 2026 Check-in</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body,
+    input,
+    button {
+      font-family: "Noto Sans Thai", Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 183, 255, 0.65), transparent 28%),
+        radial-gradient(circle at 85% 35%, rgba(255, 21, 56, 0.7), transparent 30%),
+        linear-gradient(135deg, #02030a 0%, #08122d 45%, #05030a 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          115deg,
+          transparent 0px,
+          transparent 26px,
+          rgba(255, 255, 255, 0.04) 27px,
+          rgba(255, 255, 255, 0.04) 28px
+        );
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 24px rgba(0, 183, 255, 0.45);
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: 40px;
+      line-height: 0.95;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-shadow:
+        4px 4px 0 #00185c,
+        0 0 30px rgba(255, 21, 56, 0.85);
+    }
+
+    .highlight {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 16px 10px;
+      background: linear-gradient(135deg, #00b7ff, #005dff);
+      border: 3px solid #ffd200;
+      transform: skewX(-8deg);
+      box-shadow: 0 0 32px rgba(0, 183, 255, 0.95);
+    }
+
+    .subtitle {
+      margin: 14px 0 22px;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 30px;
+      background: rgba(4, 10, 28, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.55),
+        0 0 34px rgba(0, 93, 255, 0.36);
+      backdrop-filter: blur(14px);
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .card p {
+      margin: 0 0 20px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .count { color: #ffd200; }
+
+    input {
+      width: 100%;
+      height: 64px;
+      border-radius: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      outline: none;
+      background: rgba(255, 255, 255, 0.96);
+      color: #06112b;
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    input:focus {
+      border-color: #00b7ff;
+      box-shadow: 0 0 0 4px rgba(0, 183, 255, 0.18);
+    }
+
+    button {
+      width: 100%;
+      height: 62px;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 20px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00b7ff, #005dff 48%, #ff1538);
+      box-shadow: 0 12px 28px rgba(0, 183, 255, 0.38);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .msg {
+      display: none;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .error,
+    .already {
+      background: rgba(255, 21, 56, 0.18);
+      border: 1px solid rgba(255, 21, 56, 0.55);
+    }
+
+    .success {
+      background: rgb(0 255 36 / 14%);
+      border: 1px solid rgb(0 255 31 / 50%);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="box">
+      <div class="badge">ADMIN CHECK-IN</div>
+
+      <h1>
+        NTL CULTURE<br>
+        <span class="highlight">CHECK-IN</span>
+      </h1>
+
+      <div class="subtitle">
+        กรอกรหัสพนักงาน 8 อักขระ<br>
+        เพื่อตรวจสอบและบันทึกการเข้างาน
+      </div>
+
+      <div class="card">
+        <h2>Check-in เข้างาน</h2>
+        <p>
+          ต้องมีข้อมูลลงทะเบียนก่อนเท่านั้น<br>
+          รหัสขึ้นต้นด้วย CF1, CF2, CF3, 800, 101, 110, 111, 112 หรือ 113
+        </p>
+
+        <form id="form">
+          <div class="label-row">
+            <label>รหัสพนักงาน</label>
+            <span class="count"><span id="count">0</span>/8</span>
+          </div>
+
+          <input
+            id="empId"
+            type="text"
+            inputmode="text"
+            maxlength="8"
+            placeholder="CF100001"
+            autocomplete="off"
+            autocapitalize="characters"
+          />
+
+          <button id="btn" type="submit" disabled>
+            CHECK-IN NOW
+          </button>
+        </form>
+
+        <div id="msgBox" class="msg"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzKrf43i_0owWSfNZqns-STAkTf7QHa25-CtgrShLAHex8RPaU95xxHQwhCWSSi21QuaQ/exec';
+
+    const form = document.getElementById('form');
+    const empIdInput = document.getElementById('empId');
+    const btn = document.getElementById('btn');
+    const count = document.getElementById('count');
+    const msgBox = document.getElementById('msgBox');
+
+    const EMP_ID_PATTERN = /^(CF[123]|800|101|110|111|112|113)[0-9]{5}$/;
+    const EMP_ID_ERROR = 'รหัสพนักงานต้องมี 8 อักขระ และขึ้นต้นด้วย CF1, CF2, CF3, 800, 101, 110, 111, 112 หรือ 113 เท่านั้นค่ะ';
+
+    const MAX_RETRIES = 3;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function cleanEmpId(value) {
+      return String(value || '')
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, '')
+        .slice(0, 8);
+    }
+
+    function isValidEmpId(empId) {
+      return EMP_ID_PATTERN.test(empId);
+    }
+
+    function showMessage(type, html) {
+      msgBox.className = 'msg ' + type;
+      msgBox.innerHTML = html;
+      msgBox.style.display = 'block';
+    }
+
+    function hideMessage() {
+      msgBox.style.display = 'none';
+      msgBox.innerHTML = '';
+    }
+
+    async function postToAppsScript(payload) {
+      let lastError = null;
+
+      for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+        try {
+          const response = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now(), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload),
+            redirect: 'follow',
+            cache: 'no-store'
+          });
+
+          const text = await response.text();
+
+          let result;
+          try {
+            result = JSON.parse(text);
+          } catch (err) {
+            throw new Error('Apps Script ไม่ได้ตอบกลับเป็น JSON กรุณาตรวจสอบ Deployment URL หรือสิทธิ์ Anyone');
+          }
+
+          if (result.ok || !result.retryable || attempt === MAX_RETRIES) {
+            return result;
+          }
+
+          await sleep(attempt * 2000);
+
+        } catch (err) {
+          lastError = err;
+
+          if (attempt === MAX_RETRIES) {
+            throw err;
+          }
+
+          await sleep(attempt * 2000);
+        }
+      }
+
+      throw lastError || new Error('เชื่อมต่อระบบไม่สำเร็จ');
+    }
+
+    empIdInput.addEventListener('input', () => {
+      hideMessage();
+
+      const value = cleanEmpId(empIdInput.value);
+      empIdInput.value = value;
+
+      count.textContent = value.length;
+      btn.disabled = value.length !== 8;
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideMessage();
+
+      const empId = cleanEmpId(empIdInput.value);
+
+      if (!empId) {
+        showMessage('error', 'กรุณากรอกรหัสพนักงานก่อนค่ะ');
+        return;
+      }
+
+      if (empId.length !== 8) {
+        showMessage('error', 'กรุณากรอกรหัสพนักงานให้ครบ 8 อักขระค่ะ');
+        return;
+      }
+
+      if (!isValidEmpId(empId)) {
+        showMessage('error', EMP_ID_ERROR);
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'กำลัง Check-in...';
+
+      try {
+        const result = await postToAppsScript({
+          action: 'checkin',
+          empId
+        });
+
+        if (result.ok) {
+          if (result.alreadyCheckedIn) {
+            showMessage(
+              'already',
+              `<strong>${result.message}</strong><br>
+               Employee ID: ${result.empId}<br>
+               Check-in Time: ${result.checkinTimestamp || '-'}`
+            );
+          } else {
+            showMessage(
+              'success',
+              `<strong>${result.message}</strong><br>
+               Employee ID: ${result.empId}<br>
+               Check-in Time: ${result.checkinTimestamp || '-'}`
+            );
+          }
+
+          empIdInput.value = '';
+          count.textContent = '0';
+
+        } else {
+          showMessage('error', `<strong>${result.message || 'Check-in ไม่สำเร็จค่ะ'}</strong>`);
+        }
+
+      } catch (err) {
+        showMessage('error', 'เกิดข้อผิดพลาดค่ะ: ' + err.message);
+      }
+
+      btn.textContent = 'CHECK-IN NOW';
+      btn.disabled = empIdInput.value.length !== 8;
+    });
+  </script>
+</body>
+</html>
